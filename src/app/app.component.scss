@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  user-select: none;
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-left: 10px;
+  }
+}
+
+.field {
+  display: grid;
+
+  .row {
+    display: inherit;
+  }
+
+  &__pixel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #6c6c6c;
+    cursor: pointer;
+
+    span {
+      background: inherit;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      filter: invert(1) grayscale(1);
+      -webkit-filter: invert(1) grayscale(1);
+    }
+
+    .position {
+      font-size: x-small;
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<!-- <p class="color-picker">
+  Change color:
+  <input type="color" [(ngModel)]="paintColor" />
+</p> -->
+
+<p>
+  <button (click)="twoPassAlgorithm()">1. Search for painted areas</button>
+  <button (click)="mergeAreasLabels()">2. Merge areas labels</button>
+</p>
+
+<p>
+  Remove mode:
+  <button (click)="removeMode = !removeMode">{{ removeMode }}</button>
+</p>
+
+<p>
+  Connectivity toggle:
+  <button (click)="setConnectivity(connectivity === 8 ? 4 : 8)">
+    {{ connectivity }}
+  </button>
+</p>
+
+<div
+  #fieldEl
+  class="field"
+  [ngStyle]="{
+    'grid-template-rows':
+      'repeat(' + field.height + ', ' + field.pixelWidthPx + 'px)'
+  }"
+  (mouseup)="isMouseDown = false"
+  (mousedown)="isMouseDown = true"
+>
+  <div
+    *ngFor="let row of field.pixelsMatrix"
+    class="row"
+    [ngStyle]="{
+      'grid-template-columns':
+        'repeat(' + field.width + ', ' + field.pixelWidthPx + 'px)'
+    }"
+  >
+    <div
+      *ngFor="let pixel of row"
+      class="field__pixel"
+      [ngStyle]="{
+        'background-color': pixel.color,
+        width: field.pixelWidthPx + 'px',
+        height: field.pixelWidthPx + 'px'
+      }"
+      (mouseover)="paintPixel(pixel)"
+      (click)="paintPixel(pixel, true)"
+    >
+      <span>{{ pixel.label }}</span>
+      <span *ngIf="showPixelPosition" class="position"
+        >x: {{ pixel.position.x }}; y: {{ pixel.position.y }}</span
+      >
+    </div>
+  </div>
+</div>
+<p>
+  <button (click)="showPixelPosition = !showPixelPosition">
+    Toggle pixel position
+  </button>
+  <button (click)="clearField()">Clear</button>
+</p>
+<p>Number of areas: {{ numberOfAreas }}</p>
